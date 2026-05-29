@@ -1,0 +1,73 @@
+STR repository setup checklist
+==============================
+
+Purpose
+-------
+This repository contains:
+1. STR conversion: Excel/HTML/image table -> semantic triplets.
+2. TripletQL Agent: direct-answer, conservative filtering, and full-reasoning QA routes.
+3. TABLET training code: data loading, models, losses, train_split.py, train_merge.py, inference, and evaluation.
+
+Environment
+-----------
+Recommended local environment:
+
+  conda activate fintab
+  pip install -e .
+
+Required for LLM-backed conversion and QA:
+
+  export STR_LLM_API_KEY="your_api_key"
+  export STR_LLM_BASE_URL="https://your-openai-compatible-endpoint/v1"
+  export STR_LLM_MODEL="your_model_name"
+
+Optional TripletQL feature probe:
+
+  export STR_QWEN_URL="http://localhost:8001/v1"
+
+Public input policy
+-------------------
+Current public release keeps the image conversion entry, but image input requires
+local TABLET split/merge checkpoints. Weights are not public and must not be
+committed. HTML and Excel inputs work without TABLET weights.
+
+Large files policy
+------------------
+Do not commit datasets, weights, checkpoints, predictions, logs, or `.env`.
+TABLET weights should be kept locally under `tablet/checkpoints/`.
+
+Quick checks
+------------
+  conda run -n fintab python -m compileall str_core triplet_agent learnable_routing tablet
+  conda run -n fintab python tests/test_smoke.py
+
+Common commands
+---------------
+Convert:
+
+  python -m str_core convert examples/simple_table.html --input-type html --use-llm never
+
+Ask:
+
+  python -m str_core qa --triplet table.str.json -q "Which company has the highest revenue?"
+
+Serve API:
+
+  python -m str_core serve --host 0.0.0.0 --port 8000
+
+TABLET training:
+
+  cd tablet
+  python download_data.py
+  python train_split.py --batch-size 32 --epochs 16 --device cuda
+  python train_merge.py --batch-size 32 --epochs 24 --device cuda
+
+GitHub initialization
+---------------------
+  cd STR
+  git init
+  git add .
+  git commit -m "Initial STR reference implementation"
+  git branch -M main
+  git remote add origin git@github.com:<your-user-or-org>/STR.git
+  git push -u origin main

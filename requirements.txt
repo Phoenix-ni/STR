@@ -1,0 +1,38 @@
+# STR / TripletQL core
+openai>=1.30.0
+requests>=2.31.0
+tqdm>=4.66.0
+PyYAML>=6.0.1
+python-dotenv>=1.0.1
+
+# Table input conversion: HTML / Excel / tabular data
+beautifulsoup4>=4.12.3
+lxml>=5.2.0
+openpyxl>=3.1.2
+pandas>=2.2.0
+
+# API service
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.7.0
+python-multipart>=0.0.9
+
+# TABLET visual table structure recognition and training
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.23.0
+opencv-python>=4.7.0
+matplotlib>=3.5.0
+scipy>=1.10.0
+Pillow>=10.0.0
+apted>=1.0.3
+PyMuPDF>=1.22.0
+kagglehub>=0.2.0
+
+# Learnable TripletQL router SFT/evaluation
+transformers>=4.45.0
+datasets>=2.19.0
+accelerate>=0.30.0
+peft>=0.13.0
+trl>=0.11.0
+safetensors>=0.4.3

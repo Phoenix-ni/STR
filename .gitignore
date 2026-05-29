@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+env/
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+.obsidian/
+*.swp
+
+# Logs and intermediate outputs
+*.log
+*.tsv
+debug_*
+scratch/
+
+# Checkpoints / large artifacts
+*.bin
+*.safetensors
+*.pt
+*.pth
+out/checkpoints/
+out/*.tar.gz
+checkpoints/
+tablet/checkpoints/
+tablet/data/
+tablet/otsl_labels/
+tablet/outputs/
+outputs/
+*.ckpt
+*.onnx
+
+# Local generated tables / predictions
+*.bak
+*.tmp
+*.cache
+prediction/
+evaluation_results/
+learnable_routing/out/
+learnable_routing/data/
+learnable_routing/checkpoints/
+
+# Local secrets
+.env
+*.key
+config/api_keys*

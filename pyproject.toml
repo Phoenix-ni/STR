@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "semantic-triplet-restoration"
+version = "0.1.0"
+description = "Semantic Triplet Restoration (STR) and TripletQL for table QA"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "beautifulsoup4>=4.12",
+  "fastapi>=0.110",
+  "openai>=1.0",
+  "openpyxl>=3.1",
+  "pydantic>=2",
+  "python-multipart>=0.0.9",
+  "requests>=2.31",
+  "uvicorn>=0.29",
+]
+
+[project.optional-dependencies]
+tablet = [
+  "torch",
+  "torchvision",
+  "opencv-python",
+  "numpy",
+  "tqdm",
+  "matplotlib",
+]
+dev = ["pytest>=8"]
+
+[project.scripts]
+str = "str_core.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["str_core*", "triplet_agent*", "learnable_routing*"]
